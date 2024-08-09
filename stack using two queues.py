@@ -4,7 +4,6 @@ class Stack:
     def __init__(self):
         self.q1 = Queue()
         self.q2 = Queue()
-        self.currentSize = 0
 
     def top(self):
         if self.q1.empty():
