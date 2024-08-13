@@ -4,18 +4,7 @@ class Stack:
     def __init__(self):
         self.q1 = Queue()
         self.q2 = Queue()
-
-    def top(self):
-        if self.q1.empty():
-            return -1
-        while self.q1.qsize() != 1:
-            x = self.q1.get()
-            self.q2.put(x)
-        topEle = self.q1.get()
-        self.q2.put(topEle)
-        self.q1,self.q2 = self.q2,self.q1
-        return topEle
-
+        
     def push(self, val):
         self.q1.put(val)
 
@@ -24,14 +13,23 @@ class Stack:
             while self.q1.qsize() != 1:
                 x = self.q1.get()
                 self.q2.put(x)
-            last = self.q1.get()
+            lastEle = self.q1.get()
             self.q1,self.q2 = self.q2,self.q1
-            return last
-        else:
-            return 
-
+            return lastEle
+        
+    def top(self):
+        if self.q1.empty():
+            return "No element in stack"
+        while self.q1.qsize() != 1:
+            x = self.q1.get()
+            self.q2.put(x)
+        topEle = self.q1.get()
+        self.q2.put(topEle)
+        self.q1,self.q2 = self.q2,self.q1
+        return topEle
+ 
     def is_empty(self):
-        if self.q1.empty() and self.q2.empty():
+        if self.q1.empty():
             return True
         else:
             return False   
